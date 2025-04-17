@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Smart Parking System</title>
+  <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🚗 Smart Parking System</h1>
+    <div class="parking-lot" id="parkingLot"></div>
+  </div>
+
+  <script>
+    const parkingLot = document.getElementById("parkingLot");
+    const totalSpots = 20;
+  
+    function createSpot(id) {
+      const spot = document.createElement("div");
+      spot.classList.add("spot");
+      spot.textContent = `Spot ${id}`;
+      spot.dataset.id = id;
+  
+      spot.addEventListener("click", () => {
+        if (!spot.classList.contains("booked")) {
+          spot.classList.add("booked");
+          spot.textContent = `Booked ${id}`;
+        } else {
+          const confirmUnbook = confirm("This spot is booked. Do you want to unbook it?");
+          if (confirmUnbook) {
+            spot.classList.remove("booked");
+            spot.textContent = `Spot ${id}`;
+          }
+        }
+      });
+  
+      return spot;
+    }
+  
+    for (let i = 1; i <= totalSpots; i++) {
+      const spot = createSpot(i);
+      parkingLot.appendChild(spot);
+    }
+  </script>
+  
+    </script>
+    <style>
+        body {
+        background: url(https://images.pexels.com/photos/19292933/pexels-photo-19292933/free-photo-of-car-on-the-side-of-a-road.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2) no-repeat center center fixed;
+        background-size: cover;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: Arial, sans-serif;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 0;
+        padding: 20px;
+      }
+      
+      .container {
+        max-width: 800px;
+        margin: auto;
+        color: white;
+      }
+      
+      .parking-lot {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 15px;
+        margin-top: 30px;
+      }
+      
+      .spot {
+        background-color: #434643;
+        border: 2px solid black;
+        padding: 20px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      
+      .spot.booked {
+        background-color: #f08b8b;
+        cursor: not-allowed;
+      }
+      
+      .spot:hover:not(.booked) {
+        background-color: #a4d4a4;
+      }
+      </style>
+</body>
+</html>

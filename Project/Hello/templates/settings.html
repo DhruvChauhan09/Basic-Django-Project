@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+
+{% block title %}Settings{% endblock title %}
+
+{% block body %} 
+<div class="settings-container">
+    <h2>Settings</h2>
+
+    <div class="setting-item" id="historyBtn">🚗 View Previous History</div>
+    <div class="setting-item" id="languageBtn">🌐 Preferred Language</div>
+    <div class="setting-item" id="notificationsBtn">🔔 Notification Settings</div>
+    <div class="setting-item" id="darkModeBtn">🌙 Toggle Dark Mode</div>
+    <div class="setting-item" id="emailBtn">✉️ Update Email</div>
+    <div class="setting-item" id="passwordBtn">🔒 Change Password</div>
+    <div class="setting-item" id="feedbackBtn">💬 Submit Feedback</div>
+  </div>
+
+  <script>
+    // Click handlers for each setting
+
+document.getElementById("historyBtn").addEventListener("click", () => {
+    alert("📜 Your previous history:\n- Booked on Apr 1\n- Canceled on Apr 5\n- Updated settings Apr 10");
+  });
+  
+  document.getElementById("languageBtn").addEventListener("click", () => {
+    const lang = prompt("Choose language: en / hi / fr / es", "en");
+    if (lang) {
+      alert(🌐 Language set to: ${lang});
+    }
+  });
+  
+  document.getElementById("notificationsBtn").addEventListener("click", () => {
+    const enable = confirm("Enable push notifications?");
+    alert(enable ? "🔔 Notifications enabled!" : "🔕 Notifications disabled.");
+  });
+  
+  document.getElementById("darkModeBtn").addEventListener("click", () => {
+    const dark = document.body.classList.toggle("dark-mode");
+    alert(dark ? "🌙 Dark mode ON" : "☀️ Dark mode OFF");
+  });
+  
+  document.getElementById("emailBtn").addEventListener("click", () => {
+    const email = prompt("Enter new email:");
+    if (email) {
+      alert(✉️ Email updated to: ${email});
+    }
+  });
+  
+  document.getElementById("passwordBtn").addEventListener("click", () => {
+    const pwd = prompt("Enter new password:");
+    if (pwd) {
+      alert("🔒 Password updated successfully!");
+    }
+  });
+  
+  document.getElementById("feedbackBtn").addEventListener("click", () => {
+    const feedback = prompt("💬 Leave your feedback:");
+    if (feedback) {
+      alert("✅ Thanks for your feedback!");
+    }
+  });
+  
+  // Optional: Dark mode CSS change
+  const darkStyles = `
+    body.dark-mode {
+      background-color: #2d3436;
+      color: #ecf0f1;
+    }
+    body.dark-mode .settings-container {
+      background-color: #3b3b3b;
+      box-shadow: none;
+    }
+    body.dark-mode .setting-item {
+      background-color: #444;
+      color: #fff;
+    }
+    body.dark-mode .setting-item:hover {
+      background-color: #555;
+    }
+  `;
+  
+  // Inject dark mode styles
+  const styleSheet = document.createElement("style");
+  styleSheet.type = "text/css";
+  styleSheet.innerText = darkStyles;
+  document.head.appendChild(styleSheet);
+  
+  </script>
+  <style>
+    /* Base styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    background: url(https://images.pexels.com/photos/8960862/pexels-photo-8960862.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2) no-repeat center center fixed;
+        background-size: cover;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f2f2f2;
+    color: #333;
+    padding: 20px;
+  }
+  
+  .settings-container {
+    max-width: 500px;
+    margin: 60px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    text-align: center;
+    color: #00b894;
+    margin-bottom: 30px;
+  }
+  
+  /* Each setting as a hoverable item */
+  .setting-item {
+    background-color: #f9f9f9;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  
+  .setting-item:hover {
+    background-color: #e0f7f4;
+    transform: translateX(5px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  </style>
+{% endblock body %}
